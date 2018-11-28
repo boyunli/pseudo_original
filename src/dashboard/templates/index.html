@@ -1,0 +1,75 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en-US"> <![endif]-->
+<!--[if IE 7]>    <html class="lt-ie9 lt-ie8" lang="en-US"> <![endif]-->
+<!--[if IE 8]>    <html class="lt-ie9" lang="en-US"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+
+<head>
+    <!-- META TAGS -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>腕尚表业</title>
+    <link rel="shortcut icon" href="images/favicon.png" />
+    <!-- Style Sheet-->
+    <link rel="stylesheet" href="static/css/style.css" />
+    <link rel="stylesheet" id="bootstrap-css-css" href="static/css/bootstrap5152.css" type="text/css" media="all" />
+    <link rel="stylesheet" id="responsive-css-css" href="static/css/responsive5152.css" type="text/css" media="all" />
+    <link rel="stylesheet" id="pretty-photo-css-css" href="static/css/prettyphotoaeb9.css" type="text/css" media="all" />
+    <link rel="stylesheet" id="main-css-css" href="static/css/main5152.css" type="text/css" media="all" />
+    <link rel="stylesheet" id="custom-css-css" href="static/css/custom5152.css" type="text/css" media="all" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="static/js/html5.js"></script></script>
+    <![endif]-->
+</head>
+
+<body>
+    <!-- Start of Search Wrapper -->
+    <div class="search-area-wrapper">
+        <div class="search-area container">
+            <form id="search-form" class="search-form clearfix" method="post" action="#" autocomplete="off">
+                <input class="search-term required" type="text" id="keyword" name="keyword" placeholder="输入伪原创关键词" title="* Please enter a search term!" />
+                <select name="cars" id="category" style="width:100px;">
+                    {% for category in categorys %}
+                        <option value="{{ category }}">{{ category }}</option>
+                    {% endfor %}
+                </select>
+                <select name="cars" id="wechat">
+                    {% for wechat in wechats %}
+                        <option value="{{ wechat }}">微信：{{ wechat }}</option>
+                    {% endfor %}
+                </select>
+                <input class="search-btn" id="btn-search" type="submit" value="生成" />
+                <div id="search-error-container"></div>
+            </form>
+        </div>
+    </div>
+    <!-- End of Search Wrapper -->
+    <!-- Start of Page Container -->
+    <div class="page-container">
+        <div class="container">
+            <div class="row">
+                <!-- start of page content -->
+                <div class="span8 main-listing" id="feedback">
+                </div>
+                <!-- end of page content -->
+            </div>
+        </div>
+    </div>
+    <!-- End of Page Container -->
+    <a href="#top" id="scroll-top"></a>
+    <!-- script -->
+    <script type="text/javascript" src="static/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="static/js/jquery.easing.1.34e44.js"></script>
+    <script type="text/javascript" src="static/js/jquery.prettyphotoaeb9.js"></script>
+    <script type="text/javascript" src="static/js/jquery.livesearchd5f7.js"></script>
+    <script type="text/javascript" src="static/js/jflickrfeed.js"></script>
+    <script type="text/javascript" src="static/js/jquery.formd471.js"></script>
+    <script type="text/javascript" src="static/js/jquery.validate.minfc6b.js"></script>
+    <script type="text/javascript" src="static/js/custom5152.js"></script>
+    <script type="text/javascript" src="static/js/index.js"></script>
+</body>
+
+</html>
