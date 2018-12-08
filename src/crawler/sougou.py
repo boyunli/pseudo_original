@@ -21,8 +21,11 @@ class SougouCrawler:
         weixin_param = self._crawl_weixin(keyword, weixin_page)
         while weixin_param == 0:
             weixin_pages.remove(weixin_page)
-            weixin_page = random.choice(weixin_pages)
-            weixin_param = self._crawl_weixin(keyword, weixin_page)
+            if weixin_pages:
+                weixin_page = random.choice(weixin_pages)
+                weixin_param = self._crawl_weixin(keyword, weixin_page)
+            else:
+                weixin_param = ''
 
         zhihu_total_page = self._crawl_zhihu_total_page(keyword)
         zhihu_pages = [i for i in range(zhihu_total_page)]
@@ -30,8 +33,11 @@ class SougouCrawler:
         zhihu_param = self._crawl_zhihu(keyword, zhihu_page)
         while zhihu_param == 0:
             zhihu_pages.remove(zhihu_page)
-            zhihu_page = random.choice(zhihu_pages)
-            zhihu_param = self._crawl_zhihu(keyword, zhihu_page)
+            if zhihu_pages:
+                zhihu_page = random.choice(zhihu_pages)
+                zhihu_param = self._crawl_zhihu(keyword, zhihu_page)
+            else:
+                zhihu_param = ''
 
         print('\033[93m weixin:{}\n\n zhihu:{}\033[0m'.format(weixin_param, zhihu_param))
         return separator.join([zhihu_param, weixin_param])

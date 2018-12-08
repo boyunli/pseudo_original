@@ -1,3 +1,5 @@
+import sys
+sys.path.append("/home/lily/py3/pseudo_original/src")
 from flask import Flask, request, render_template, jsonify
 
 from dashboard.db import pseudo_query

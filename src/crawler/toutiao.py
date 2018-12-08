@@ -11,13 +11,16 @@ class TouTiaoCrawler:
 
     def main(self, title):
         keyword = title.split('，')[0]
-        pages = [i for i in range(5)]
+        pages = [i for i in range(10)]
         page = random.choice(pages)
         param = self._crawl(keyword, page)
         while param == 0:
             pages.remove(page)
-            page = random.choice(pages)
-            param = self._crawl(keyword, page)
+            if pages:
+                page = random.choice(pages)
+                param = self._crawl(keyword, page)
+            else:
+                param = ''
         print('\033[93m toutiao:{}\n\033[0m'.format(param))
         return param
 
