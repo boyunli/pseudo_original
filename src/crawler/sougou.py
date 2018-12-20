@@ -85,7 +85,8 @@ class SougouCrawler:
                 break
             param = ''.join(random.sample(params, cut_nums))
             param_count = len(param)
-        param = param if param.endswith('。') else param + '。'
+        if param:
+            param = param if param.endswith('。') else param + '。'
         return param
 
     def _crawl_zhihu_total_page(self, keyword):
@@ -121,7 +122,10 @@ class SougouCrawler:
                 href_resp = rget(href_)
                 if href_resp.headers['Content-Encoding'] == 'br':
                     data = brotli.decompress(href_resp.content).decode('utf-8')
-                    jdata = json.loads(data)
+                    try:
+                        jdata = json.loads(data)
+                    except json.decoder.JSONDecodeError:
+                        continue
                     article = [answer['content'].split('<figure>')[0] for answer in jdata['data']]
                     # 选出 回答超过200 字的
                     params = [p for p in article if len(trim(p))>=200]
@@ -136,6 +140,8 @@ class SougouCrawler:
                     html = etree.HTML(data)
                     params = html.xpath('//p/text()')
                     param_num += 1
+                    if param_num > len(params):
+                        param_num = len(params)
                     param = trim(''.join(random.sample(params, param_num)))
                     article_length = len(param)
         print("\033[94m 搜狗知乎爬取第{}页，爬取URL:{}; 获取文章字数：{}. \033[0m".format(page, href, article_length))

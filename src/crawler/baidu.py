@@ -75,7 +75,8 @@ class BaiDuCrawler:
                 break
             param = ''.join(random.sample(params, cut_nums))
             param_count = len(param)
-        param = param if param.endswith('。') else param + '。'
+        if param:
+            param = param if param.endswith('。') else param + '。'
 
         return trim(param)
 
