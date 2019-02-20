@@ -48,7 +48,7 @@ class BaiDuCrawler:
         answers = []
         while not answers:
             if not hrefs:
-                return 0
+                return ''
             href = random.choice(hrefs)
             hrefs.remove(href)
             href_resp = rget(href)
