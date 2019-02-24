@@ -37,7 +37,8 @@ class TouTiaoCrawler:
         href = ''
         article = ''
         article_length = 0
-        while article_length < 200:
+        num = 0
+        while article_length < 200 and num < 3:
             if not hrefs:
                 return 0
             href = random.choice(hrefs)
@@ -47,6 +48,7 @@ class TouTiaoCrawler:
             article = trim(article)
             article = re.sub('[&lt&gt&quot;pa-z\/#3D\.-:_]', '', article)
             article_length = len(article)
+            num += 1
         print("\033[94m 今日头条爬取第{}页，爬取URL:{}; 获取文章字数：{}. \033[0m".format(page, href, article_length))
 
         params = article.split('。')

@@ -52,6 +52,8 @@ class BaiDuCrawler:
             href = random.choice(hrefs)
             hrefs.remove(href)
             href_resp = rget(href)
+            if not href_resp:
+                continue
             href_html = etree.HTML(href_resp.content.decode('gbk', 'ignore'))
             content = href_html.xpath('//div[@class="line content"]')
             articles = [''.join(a.xpath('.//p/text()')) for a in content]
@@ -67,7 +69,8 @@ class BaiDuCrawler:
         cut_nums = 200//(answer_length//params_length)
         param_count = 0
         param = ''
-        while param_count < 200:
+        num = 0
+        while param_count < 200 and num < 3:
             cut_nums += 1
             if cut_nums >= params_length:
                 cut_nums = params_length - 1
@@ -75,6 +78,7 @@ class BaiDuCrawler:
                 break
             param = ''.join(random.sample(params, cut_nums))
             param_count = len(param)
+            num += 1
         if param:
             param = param if param.endswith('。') else param + '。'
 
