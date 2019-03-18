@@ -6,7 +6,7 @@ import json
 import brotli
 
 from utils.request_pkg import request_get as rget
-from utils.comm import trim, SEPARATOR as separator
+from utils.comm import trim, re_trim, SEPARATOR as separator
 
 class SougouCrawler:
 
@@ -132,7 +132,7 @@ class SougouCrawler:
                     # 选出 回答超过200 字的
                     params = [p for p in article if len(trim(p))>=200]
                     if not params: continue
-                    param = trim(random.choice(params))
+                    param = re_trim(trim(random.choice(params)))
                     article_length = len(param)
             else:
                 # 知乎文章页 '/p' in href
@@ -144,7 +144,7 @@ class SougouCrawler:
                     param_num += 1
                     if param_num > len(params):
                         param_num = len(params)
-                    param = trim(''.join(random.sample(params, param_num)))
+                    param = re_trim(trim(''.join(random.sample(params, param_num))))
                     article_length = len(param)
         print("\033[94m 搜狗知乎爬取第{}页，爬取URL:{}; 获取文章字数：{}. \033[0m".format(page, href, article_length))
         return param
@@ -152,5 +152,5 @@ class SougouCrawler:
 
 
 if __name__ == '__main__':
-    title = '阿玛尼手表，一比一工厂货源直销'
+    title = '刘亦菲代言天梭手上蓝色手表，原单一手货源'
     SougouCrawler().main(title)
