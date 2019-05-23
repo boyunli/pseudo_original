@@ -5,7 +5,7 @@ import MySQLdb
 def pseudo_query(query, wechat, category):
     data = ''
     conn = MySQLdb.connect(
-        host='192.168.0.103',
+        host='192.168.1.103',
         port=3306,
         user="root",
         passwd="cgll.123",

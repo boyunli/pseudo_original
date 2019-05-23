@@ -4,6 +4,7 @@ from lxml import etree
 import json
 
 import brotli
+from urllib.parse import urljoin
 
 from utils.request_pkg import request_get as rget
 from utils.comm import trim, re_trim, SEPARATOR as separator
@@ -64,6 +65,7 @@ class SougouCrawler:
                 return 0
             href = random.choice(hrefs)
             hrefs.remove(href)
+            href = urljoin('https://weixin.sogou.com/', href)
             href_resp = rget(href)
             html = etree.HTML(href_resp.content)
             params = html.xpath('//*[@id="js_content"]/descendant::*/text()')
@@ -152,5 +154,5 @@ class SougouCrawler:
 
 
 if __name__ == '__main__':
-    title = '刘亦菲代言天梭手上蓝色手表，原单一手货源'
+    title = '阿玛尼的手表多少钱，原单工厂货源一件代发'
     SougouCrawler().main(title)

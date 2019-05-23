@@ -61,7 +61,7 @@ def request_get(url, cookies=None, referer=None,
     ua = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.119 Safari/537.36'
     while True:
         try:
-            ip, proxies = set_proxies()
+            # ip, proxies = set_proxies()
             headers = rotate_headers(referer=referer, origin=origin, host=host, ua=ua)
             if cookies:
                 res = requests.get(url, cookies=cookies,
@@ -74,8 +74,8 @@ def request_get(url, cookies=None, referer=None,
                                    timeout=15,  verify=False, **kwargs)
             return res
         except requests.exceptions.ProxyError:
-            print('{flag} 代理无效 {flag}'.format(flag='-'*30))
-            delete_no_use_proxy_ip(ip)
+            # print('{flag} 代理无效 {flag}'.format(flag='-'*30))
+            # delete_no_use_proxy_ip(ip)
             retry_count += 1
             time.sleep(1)
             if retry_count == 5:
